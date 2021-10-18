@@ -1,2 +1,2 @@
 # EggsAndSpamCraft
-A minecraft clone built in python and rendered with RayMarching.
+A Minecraft clone built in python and rendered with RayMarching.

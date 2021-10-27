@@ -1,4 +1,5 @@
 from math import *
+from typing import List
 import pygame
 from pygame.draw import circle
 from pygame.locals import *
@@ -60,7 +61,13 @@ screenSize = (640,640)
 screen = pygame.display.set_mode(screenSize)
 runBool = True
 #shape vars
-idleShapeList= [Shape("circle",(120,420),30.0,BLUE),Shape("rectangle",(420,120),(40,40),RED)]
+testCircle = Shape("circle",(120,420),30.0,BLUE)
+testRect = Shape("rectangle",(420,120),(80,80),RED)
+testRect1 = Shape("rectangle",(320,320),(80,80),RED)
+idleShapeList= list()
+idleShapeList.append(testCircle)
+idleShapeList.append(testRect)
+idleShapeList.append(testRect1)
 activeShapeList= [Shape("circle",mousePos,0)]
 shapeList = [activeShapeList,idleShapeList]
 while runBool:
@@ -68,6 +75,8 @@ while runBool:
     for event in pygame.event.get():
         if event.type == QUIT:
             runBool = False
+        elif event.type == MOUSEBUTTONDOWN:
+            idleShapeList.append(Shape("rectangle",mousePos,(80,80),RED))
         elif event.type == MOUSEMOTION:
             mousePos= event.pos
     #shape constructer and updater

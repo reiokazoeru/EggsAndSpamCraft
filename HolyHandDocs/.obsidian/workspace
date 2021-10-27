@@ -1,0 +1,94 @@
+{
+  "main": {
+    "id": "254396511163b1ea",
+    "type": "split",
+    "children": [
+      {
+        "id": "07c9e17bb51a81df",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "1. Projects/To-Do List.md",
+            "mode": "source"
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8ca0efdac004decb",
+    "type": "split",
+    "children": [
+      {
+        "id": "ffa44286649690dc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a8e1fd2d2c5bb35f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "caeed4783fd5f9dc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "dbef56b8ee0f34ec",
+    "type": "split",
+    "children": [
+      {
+        "id": "dacd1d948d26ae47",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8c2acf21c377a8fd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "1. Projects/To-Do List.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "07c9e17bb51a81df",
+  "lastOpenFiles": [
+    "1. Projects/To-Do List.md",
+    "3. Resource/PARA.md"
+  ]
+}

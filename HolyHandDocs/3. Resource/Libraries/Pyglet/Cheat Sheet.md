@@ -7,8 +7,9 @@ pyglet.window.Window() -
 pyglet.text.Label(\<content>\,\<font_name>\,\<font_size>\,\<x>\,\<y>\,\<anchor_x>\,\<anchor_y>\)
 	makes a text label
 
-pyglet.resource.image(\<path>\)
-	makes a image object
+pyglet.image.load(\<path>\)
+	makes a image object (better ver of .resources.image) 
+		Use with [[3. Resource/Libraries/os/Cheat Sheet]] to get root path
 
 @window.event
 	when window updates, run function below
@@ -21,3 +22,7 @@ pyglet.resource.image(\<path>\)
 	
 (image object).blit(\<x>,\<y>)
 	draws image to window
+def on_draw() 
+	function modifies draw function
+def on_key_press(symbol,modifiers)
+	function that handles key presses

@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "3. Resource/Libraries/Pyglet/Cheat Sheet.md",
+            "file": "3. Resource/Libraries/Pyglet/Cheat Sheet PYGLET.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3. Resource/Libraries/Pyglet/Cheat Sheet.md",
+                "file": "3. Resource/Libraries/Pyglet/Cheat Sheet PYGLET.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,9 +88,9 @@
   },
   "active": "e0d172b752ffaf60",
   "lastOpenFiles": [
-    "3. Resource/Libraries/Pyglet/Cheat Sheet.md",
-    "3. Resource/Libraries/os/Cheat Sheet.md",
-    "1. Projects/To-Do List.md",
-    "3. Resource/PARA.md"
+    "3. Resource/Libraries/Pyglet/Cheat Sheet PYGLET.md",
+    "3. Resource/Libraries/os/Cheat Sheet OS.md",
+    "3. Resource/PARA.md",
+    "1. Projects/To-Do List.md"
   ]
 }

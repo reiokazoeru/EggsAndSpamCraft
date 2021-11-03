@@ -1,4 +1,4 @@
 ### import os
-	no way!
+no way!
 ### os.path.abspath(os.path.join('..', os.getcwd()))
-	get parent dir of project
+get parent dir of project

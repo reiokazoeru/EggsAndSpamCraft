@@ -20,6 +20,22 @@ class MouseH:
         self.hx = x + dx*m
         self.hy = y + dy*m
 
+class Triangle:
+    """
+    a def for a triangle 
+    """
+    def __init__(self,p1,p2,p3) -> None:
+        self.p1 = p1
+        self.p2 = p2 
+        self.p3 = p3
+    
+    def signDst(pG,self):
+        pass
+        """
+        make plane from tri
+        offset point relative to plane 
+        
+        """
 #fix root dir
 path = os.path.abspath(os.path.join('..', os.getcwd()))
 pyglet.resource.path = [path] 

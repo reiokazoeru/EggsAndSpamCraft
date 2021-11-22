@@ -3,6 +3,17 @@ from pyglet.gl import *
 # direct OpenGL commands to this window
 window = pyglet.window.Window()
 
+cubeVerts = [
+    (0,0,0),
+    (1,0,0),
+    (1,1,0),
+    (0,1,0),
+    (0,0,1),
+    (1,0,1),
+    (1,1,1),
+    (0,1,1)
+]
+
 @window.event
 def on_draw():
     glClear(GL_COLOR_BUFFER_BIT)

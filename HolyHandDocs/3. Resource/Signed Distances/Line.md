@@ -1,0 +1,8 @@
+- find lengths:
+	- a. l1 to l2
+	- b. l1 to P
+	- c. l2 to P
+- if either angle touch og line is greater than 90
+	- use length to p that is shortest
+- else
+	- use length from line segment to 

@@ -1,0 +1,1 @@
+signed distance = distance to center - circle radius

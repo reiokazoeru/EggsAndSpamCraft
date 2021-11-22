@@ -2,8 +2,10 @@ from math import *
 from numpy import *
 from typing import List
 import pygame
-from pygame.draw import circle
+from pygame.draw import circle, line
 from pygame.locals import *
+
+
 class Shape():
     #a general shape class to make life easier when dealing with many @ once
     def __init__(self,type:str,pos:tuple,size,color=(255,255,255)) -> None:
@@ -21,7 +23,17 @@ class Shape():
             return signedDstCircle(target,self.pos,self.size)
         elif self.type == "rectangle":
             return signedDstRect((self.pos),(self.size),target)
-
+class Line():
+    # a class to generate a line
+    def __init__(self,p1:tuple,p2:tuple,thickness:int,color=(255,255,255)) -> None:
+        self.p1 = p1
+        self.p2 = p2
+        self.thickness = thickness
+        self.color = color
+    def draw(self,screen):
+        pygame.draw.line(screen,self.color,self.p1,self.p2,self.thickness)
+    def signedDst(self,target:tuple):
+        return signedDstLine(target,self.p1,self.p2)
 
 def tupleSub(t1:tuple,t2:tuple):
     return (t1[0]-t2[0],t1[1]-t2[1])

@@ -35,6 +35,4 @@ EditorCamera()
 shad = shaderImport(f='Assets\\Rendering Scripts\\tests\\ursina rtx maybe\\glslPH.glsl')
 camera.shader = shad
 
-
-
 app.run()

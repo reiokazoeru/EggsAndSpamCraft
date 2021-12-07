@@ -55,26 +55,55 @@ def genWorldVerts(wSp):
                         mainVert[p[0]][p[1]][p[2]] = 1
     return mainVert
 
-def genWorldTris(wSp,vSp):
-    mainLine = [[[0 for i in range(worldSize[2])] for i in range(worldSize[1])] for i in range(worldSize[0])]
+def genWorldVertsAndTris(wSp,vSp):
+    vertOut = []
+    triOut = []
     # iterate for every 3d point
+    for x in range(vSp):
+        for y in range(vSp[x]):
+            for z,vert in enumerate(vSp[x][y]):
+                if vert == 1:
+                    vertOut.append((x,y,z))
     for x in range(wSp):
         for y in range(wSp[x]):
             for z,block in enumerate(wSp[x][y]):
                 if block != 0:
-                    curVerts = genCubeVerts((x,y,z))
-                    if wSp[x+1][y][z] == 0:
-                        pass
-                    if wSp[x][y+1][z] == 0:
-                        pass
-                    if wSp[x][y][z+1] == 0:
-                        pass
-                    if wSp[x-1][y][z] == 0:
-                        pass
-                    if wSp[x][y-1][z] == 0:
-                        pass
-                    if wSp[x][y][z-1] == 0:
-                        pass
+                    
+                    # check if tris are needed on that face by checking for a border block
+                    # find verts on that face
+                    # get index of the face points in the main vertex list
+                    # add tri from points to tri list
+                    if wSp[x+1][y][z] != 0:
+                        xBP = [(x+1,y,z),(x+1,y+1,z),(x+1,y,z+1),(x+1,y+1,z+1)]
+                        xBPi = [vertOut.index(i) for i in xBP]
+                        triOut.append((xBPi[1],xBPi[2],xBPi[0]))
+                        triOut.append((xBPi[2],xBPi[3],xBPi[0]))
+                    if wSp[x-1][y][z] != 0:
+                        nxBP = [(x,y,z),(x,y+1,z),(x,y+1,z+1),(x,y,z+1)]
+                        nxBPi = [vertOut.index(i) for i in nxBP]
+                        triOut.append((nxBPi[1],nxBPi[2],nxBPi[0]))
+                        triOut.append((nxBPi[2],nxBPi[3],nxBPi[0]))
+                    if wSp[x][y+1][z] != 0:
+                        yBP = [(x,y+1,z),(x+1,y+1,z),(x,y+1,z+1),(x+1,y+1,z+1)]
+                        yBPi = [vertOut.index(i) for i in yBP]
+                        triOut.append((yBPi[1],yBPi[2],yBPi[0]))
+                        triOut.append((yBPi[2],yBPi[3],yBPi[0]))
+                    if wSp[x][y-1][z] != 0:
+                        nyBP = [(x,y,z),(x+1,y,z),(x+1,y,z+1),(x,y,z+1)]
+                        nyBPi = [vertOut.index(i) for i in nyBP]
+                        triOut.append((nyBPi[1],nyBPi[2],nyBPi[0]))
+                        triOut.append((nyBPi[2],nyBPi[3],nyBPi[0]))
+                    if wSp[x][y][z+1] != 0:
+                        zBP = [(x+1,y,z+1),(x+1,y+1,z+1),(x,y+1,z+1),(x+1,y+1,z+1)]
+                        zBPi = [vertOut.index(i) for i in zBP]
+                        triOut.append((zBPi[1],zBPi[2],zBPi[0]))
+                        triOut.append((zBPi[2],zBPi[3],zBPi[0]))
+                    if wSp[x][y][z-1] != 0:
+                        nzBP = [(x,y,z),(x+1,y,z),(x+1,y+1,z),(x,y+1,z)]
+                        nzBPi = [vertOut.index(i) for i in nzBP]
+                        triOut.append((nzBPi[1],nzBPi[2],nzBPi[0]))
+                        triOut.append((nzBPi[2],nzBPi[3],nzBPi[0]))
+    return tuple(vertOut), tuple(triOut)
 
 def update():
     pass

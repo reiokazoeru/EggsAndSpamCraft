@@ -32,7 +32,7 @@ e.position = (0,0,0)
 e.scale = (5,5,5)
 
 EditorCamera()
-shad = shaderImport(f='Assets\\Rendering Scripts\\tests\\ursina rtx maybe\\glslPH.glsl')
-camera.shader = shad
+# shad = shaderImport(f='Assets\\Rendering Scripts\\tests\\ursina rtx maybe\\glslPH.glsl')
+# camera.shader = shad
 
 app.run()

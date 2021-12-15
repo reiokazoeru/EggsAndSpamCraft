@@ -1,5 +1,5 @@
-from random import triangular
 from ursina import *
+from ursina.prefabs.first_person_controller import FirstPersonController
 
 root = os.path.abspath(os.path.join('..', os.getcwd()))
 assets = os.path.join(root,'Assets\\')
@@ -7,6 +7,15 @@ renderingScripts = os.path.join(assets,'Rendering Scripts\\')
 
 sys.path.insert(0,str(renderingScripts))
 from shaderMaker import shaderImport
+
+app = Ursina() # start ursina up
+
+# window stuff
+window.title = 'My Gex'
+window.borderless = False
+window.fullscreen = False
+window.exit_button.visible = False
+window.fps_counter.enabled = True
 
 worldSize = (16,16,16)
 vertSize = (worldSize[0]+1,worldSize[1]+1,worldSize[2]+1)
@@ -105,18 +114,9 @@ def genWorldVertsAndTris(wSp,vSp): # make a usable tuples of verts and tris from
                         triOut.append((nzBPi[2],nzBPi[3],nzBPi[0]))
     return tuple(vertOut), tuple(triOut) # return the list of verts and tris as tuples as per the mesh function
 
-def update():
-    pass
 
 
 
-app = Ursina() # start ursina up
 
-# window stuff
-window.title = 'My Gex'
-window.borderless = False
-window.fullscreen = False
-window.exit_button.visible = False
-window.fps_counter.enabled = True
-
+player = FirstPersonController()
 app.run

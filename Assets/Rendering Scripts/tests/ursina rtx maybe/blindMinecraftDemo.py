@@ -115,8 +115,5 @@ def genWorldVertsAndTris(wSp,vSp): # make a usable tuples of verts and tris from
     return tuple(vertOut), tuple(triOut) # return the list of verts and tris as tuples as per the mesh function
 
 
-
-
-
 player = FirstPersonController()
 app.run

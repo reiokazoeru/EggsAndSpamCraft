@@ -4,14 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "e0d172b752ffaf60",
+        "id": "8fe51be288f82dc5",
         "type": "leaf",
         "state": {
-          "type": "markdown",
-          "state": {
-            "file": "3. Resource/Signed Distances/Line.md",
-            "mode": "source"
-          }
+          "type": "graph",
+          "state": {}
         }
       }
     ],
@@ -68,7 +65,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "3. Resource/Signed Distances/Line.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -86,14 +82,14 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e0d172b752ffaf60",
+  "active": "8fe51be288f82dc5",
   "lastOpenFiles": [
+    "3. Resource/PARA.md",
     "3. Resource/Signed Distances/Line.md",
     "3. Resource/Signed Distances/Rectangle (aligned with the coordinate plane).md",
     "3. Resource/Signed Distances/Circle.md",
     "1. Projects/To-Do List.md",
     "3. Resource/Libraries/Pyglet/Cheat Sheet PYGLET.md",
-    "3. Resource/Libraries/os/Cheat Sheet OS.md",
-    "3. Resource/PARA.md"
+    "3. Resource/Libraries/os/Cheat Sheet OS.md"
   ]
 }

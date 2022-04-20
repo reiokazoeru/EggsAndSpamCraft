@@ -9,8 +9,7 @@ struct Surface {
 };
 vec4 sdCube(vec3 p, float r, vec3 offset, vec3 col )
 {
-  float d1 = max(length(p.x-offset.x)-r,length(p.y-offset.y)-r);
-  float d = max(d1,length(p.z-offset.z)-r);
+  float d = max(max(length(p.x-offset.x)-r,length(p.y-offset.y)-r),length(p.z-offset.z)-r);
   return vec4(d, col);
 }
 

@@ -4,62 +4,64 @@ const float MAX_DIST = 100.0;
 const float PRECISION = 0.001;
 
 struct Surface {
-  float signedDistance;
-  vec3 color;
+    float sd; // signed distance value
+    vec3 col; // color
 };
-vec4 sdCube(vec3 p, float r, vec3 offset, vec3 col )
-{
-  float d = max(max(length(p.x-offset.x)-r,length(p.y-offset.y)-r),length(p.z-offset.z)-r);
-  return vec4(d, col);
-}
 
-vec4 sdSphere(vec3 p, float r, vec3 offset, vec3 col )
+Surface sdSphere(vec3 p, float r, vec3 offset, vec3 col)
 {
   float d = length(p - offset) - r;
-  return vec4(d, col);
+  return Surface(d, col);
 }
 
-vec4 sdFloor(vec3 p, vec3 col) {
+Surface sdCube(vec3 p, float r, vec3 offset, vec3 col )
+{
+  float d = max(max(length(p.x-offset.x)-r,length(p.y-offset.y)-r),length(p.z-offset.z)-r);
+  return Surface(d, col);
+}
+
+
+Surface sdFloor(vec3 p, vec3 col) {
   float d = p.y + 1.;
-  return vec4(d, col);
+  return Surface(d, col);
 }
 
-vec4 minWithColor(vec4 obj1, vec4 obj2) {
-  if (obj2.x < obj1.x) return obj2; // The x component of the object holds the "signed distance" value
+Surface minWithColor(Surface obj1, Surface obj2) {
+  if (obj2.sd < obj1.sd) return obj2; // The sd component of the struct holds the "signed distance" value
   return obj1;
 }
 
-vec4 sdScene(vec3 p) {
-  vec4 sphereLeft = sdCube(p, 0.25, vec3(-2.5,0, -2), vec3(0, .8, .8));
-  vec4 sphereRight = sdSphere(p, 1., vec3(2.5, 0, -2), vec3(1, 0.58, 0.29));
-  vec4 co = minWithColor(sphereLeft, sphereRight); // co = closest object containing "signed distance" and color
+Surface sdScene(vec3 p) {
+  Surface sphereLeft = sdCube(p, 1., vec3(-2.5, 0, -2), vec3(0, .8, .8));
+  Surface sphereRight = sdSphere(p, 1., vec3(2.5, 0, -2), vec3(1, 0.58, 0.29));
+  Surface co = minWithColor(sphereLeft, sphereRight); // co = closest object containing "signed distance" and color
   co = minWithColor(co, sdFloor(p, vec3(0, 1, 0)));
   return co;
 }
 
-vec4 rayMarch(vec3 ro, vec3 rd, float start, float end) {
+Surface rayMarch(vec3 ro, vec3 rd, float start, float end) {
   float depth = start;
-  vec4 co; // closest object
+  Surface co; // closest object
 
   for (int i = 0; i < MAX_MARCHING_STEPS; i++) {
     vec3 p = ro + depth * rd;
     co = sdScene(p);
-    depth += co.x;
-    if (co.x < PRECISION || depth > end) break;
+    depth += co.sd;
+    if (co.sd < PRECISION || depth > end) break;
   }
   
-  vec3 col = vec3(co.yzw);
-
-  return vec4(depth, col);
+  co.sd = depth;
+  
+  return co;
 }
 
 vec3 calcNormal(in vec3 p) {
     vec2 e = vec2(1.0, -1.0) * 0.0005; // epsilon
     return normalize(
-      e.xyy * sdScene(p + e.xyy).x +
-      e.yyx * sdScene(p + e.yyx).x +
-      e.yxy * sdScene(p + e.yxy).x +
-      e.xxx * sdScene(p + e.xxx).x);
+      e.xyy * sdScene(p + e.xyy).sd +
+      e.yyx * sdScene(p + e.yyx).sd +
+      e.yxy * sdScene(p + e.yxy).sd +
+      e.xxx * sdScene(p + e.xxx).sd);
 }
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
@@ -71,12 +73,12 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
   vec3 ro = vec3(0, 0, 3); // ray origin that represents camera position
   vec3 rd = normalize(vec3(uv, -1)); // ray direction
 
-  vec4 co = rayMarch(ro, rd, MIN_DIST, MAX_DIST); // closest object
+  Surface co = rayMarch(ro, rd, MIN_DIST, MAX_DIST); // closest object
 
-  if (co.x > MAX_DIST) {
+  if (co.sd > MAX_DIST) {
     col = backgroundColor; // ray didn't hit anything
   } else {
-    vec3 p = ro + rd * co.x; // point on sphere or floor we discovered from ray marching
+    vec3 p = ro + rd * co.sd; // point on sphere or floor we discovered from ray marching
     vec3 normal = calcNormal(p);
     vec3 lightPosition = vec3(2, 2, 7);
     vec3 lightDirection = normalize(lightPosition - p);
@@ -87,7 +89,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
 
     // Multiply the diffuse reflection value by an orange color and add a bit
     // of the background color to the sphere to blend it more with the background.
-    col = dif * co.yzw + backgroundColor * .2;
+    col = dif * co.col + backgroundColor * .2;
   }
 
   // Output to screen

@@ -6,7 +6,6 @@ assets = os.path.join(root,'Assets\\')
 renderingScripts = os.path.join(assets,'Rendering Scripts\\')
 
 sys.path.insert(0,str(renderingScripts))
-from shaderMaker import shaderImport
 
 app = Ursina() # start ursina up
 
